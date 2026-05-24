@@ -1,0 +1,18 @@
+<form method="POST">
+    {% csrf_token %}
+    ID: <input type="number" name="fid"><br>
+    Title: <input type="text" name="title"><br>
+    Name: <input type="text" name="name"><br>
+    Branch: <input type="text" name="branch"><br>
+    <button type="submit">Submit</button>
+</form>
+
+<h3>CSE Professors</h3>
+
+{% for i in data %}
+<p>
+    {{ i.fid }} - {{ i.title }} - {{ i.name }} - {{ i.branch }}
+</p>
+{% empty %}
+<p>No faculty found</p>
+{% endfor %}

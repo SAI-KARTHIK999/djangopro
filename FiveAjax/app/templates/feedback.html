@@ -1,0 +1,63 @@
+<html>
+<head>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+.focus{background:yellow;}
+p:nth-child(odd){background:lightgray;}
+p:nth-child(even){background:lightblue;}
+</style>
+
+</head>
+
+<body>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="text" name="name" placeholder="Name">
+<input type="text" name="feedback" placeholder="Feedback">
+
+<button>Submit</button>
+
+</form>
+
+<div>
+
+{% for i in data %}
+<p><b>{{i.name}}</b> : {{i.fb}}</p>
+{% endfor %}
+
+</div>
+
+<script>
+
+// highlight input when user clicks
+$("input").focus(function(){
+$(this).addClass("focus");
+}).blur(function(){
+$(this).removeClass("focus");
+});
+
+// submit feedback without refreshing page
+$("form").submit(function(e){
+
+e.preventDefault();
+
+let n=$("input[name='name']").val();
+let f=$("input[name='feedback']").val();
+
+// send data to django
+$.post("",$(this).serialize());
+
+// show feedback instantly
+$("div").append("<p><b>"+n+"</b> : "+f+"</p>");
+
+});
+
+</script>
+
+</body>
+</html>

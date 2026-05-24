@@ -1,0 +1,16 @@
+<form method="POST">
+    {% csrf_token %}
+    Name: <input type="text" name="name"><br>
+    USN: <input type="text" name="usn"><br>
+    Semester: <input type="number" name="semester"><br>
+    Fee Paid: <input type="checkbox" name="fee_paid"><br>
+    <button type="submit">Submit</button>
+</form>
+
+<h3>Students List</h3>
+
+{% for i in data %}
+<p>
+    {{ i.name }} - {{ i.usn }} - {{ i.semester }}
+</p>
+{% endfor %}

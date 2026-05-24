@@ -1,0 +1,19 @@
+<h2>Add Alumni</h2>
+<form method="POST">
+    {% csrf_token %}
+    Name: <input type="text" name="name"><br>
+    USN: <input type="text" name="usn"><br>
+    Passing Year: <input type="number" name="year"><br>
+    Company: <input type="text" name="company"><br>
+    <button type="submit" name="add">Add</button>
+</form>
+
+<h3>Alumni List</h3>
+
+{% for i in data %}
+<p>
+    {{ i.name }} - {{ i.usn }} - {{ i.year }} - {{ i.company }}
+</p>
+{% empty %}
+<p>No alumni found</p>
+{% endfor %}

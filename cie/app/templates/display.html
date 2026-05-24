@@ -1,0 +1,9 @@
+<h2>Students with CIE < 20</h2>
+
+{% for i in data %}
+<p>
+    {{ i.usn }} - {{ i.name }} - {{ i.subject }} - {{ i.cie }}
+</p>
+{% empty %}
+<p>No students found</p>
+{% endfor %}

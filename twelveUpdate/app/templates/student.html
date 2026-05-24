@@ -1,0 +1,30 @@
+<form method="POST">
+
+{% csrf_token %}
+
+Name: <input type="text" name="name"><br><br>
+
+USN: <input type="text" name="usn"><br><br>
+
+Department: <input type="text" name="department"><br><br>
+
+Grade: <input type="text" name="grade"><br><br>
+
+<button type="submit" name="add">Add</button>
+
+<button type="submit" name="update">Update Grade</button>
+
+</form>
+
+<hr>
+
+{% for i in data %}
+
+<p>
+{{i.name}} -
+{{i.usn}} -
+{{i.department}} -
+{{i.grade}}
+</p>
+
+{% endfor %}
