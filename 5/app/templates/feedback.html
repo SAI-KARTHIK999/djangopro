@@ -1,60 +1,30 @@
+<!DOCTYPE html>
 <html>
 <head>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<style>
-.focus{background:yellow;}
-p:nth-child(odd){background:lightgray;}
-p:nth-child(even){background:lightblue;}
-</style>
-
+    <title>Feedback Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body>
+    <h2>Feedback Form</h2>
+    <form id="form">
+        <input type="text" id="name" placeholder="Enter Name">
+        <br><br>
+        <textarea id="feedback" placeholder="Enter Feedback"></textarea>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <h3>Result</h3>
+    <div id="result"></div>
+ <script>
 
-<form method="POST">
+$("#form").submit(function(){
 
-{% csrf_token %}
+    var name = $("#name").val();
+    var feedback = $("#feedback").val();
 
-<input type="text" name="name" placeholder="Name">
-<input type="text" name="feedback" placeholder="Feedback">
+    $("#result").append(name + " : " + feedback+"<br>");
 
-<button>Submit</button>
-
-</form>
-
-<div>
-
-{% for i in data %}
-<p><b>{{i.name}}</b> : {{i.fb}}</p>
-{% endfor %}
-
-</div>
-
-<script>
-
-// highlight input when user clicks
-$("input").focus(function(){
-$(this).addClass("focus");
-}).blur(function(){
-$(this).removeClass("focus");
-});
-
-// submit feedback without refreshing page
-$("form").submit(function(e){
-
-e.preventDefault();
-
-let n=$("input[name='name']").val();
-let f=$("input[name='feedback']").val();
-
-// send data to django
-$.post("",$(this).serialize());
-
-// show feedback instantly
-$("div").append("<p><b>"+n+"</b> : "+f+"</p>");
-
+    return false;
 });
 
 </script>
